@@ -12,6 +12,7 @@ import { PlacesService } from '../services/places.service';
 export class SelectPlacesComponent implements OnInit {
 
   places:  Place[];
+  places2:  any[];
 
   source: string;
   destination: string;
@@ -21,8 +22,14 @@ export class SelectPlacesComponent implements OnInit {
   ngOnInit() {
     this.placesService.places$
       .subscribe(
-      data => {
+        data => {
         this.places = data;
+        console.log(data);
+      });
+      this.placesService.places2$
+      .subscribe(
+        data => {
+        this.places2 = data;
         console.log(data);
       });
   }
