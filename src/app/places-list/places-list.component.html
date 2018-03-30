@@ -1,0 +1,13 @@
+<table class="courses-list card card-strong"
+       *ngIf="places$; else loadingCourses;">
+    <tr class="course-summary" *ngFor="let place of  places$ | async">
+        <td class="description">
+            Description: {{place.description}}
+        </td>
+        
+    </tr>
+</table>
+
+<ng-template #loadingCourses>
+    <div>Loading ...</div>
+</ng-template>
