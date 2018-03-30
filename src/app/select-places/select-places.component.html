@@ -9,8 +9,8 @@
               <select class="form-control inputstl" placeholder="Place" >
                 <option>-- None --</option>
                 <optgroup *ngFor="let place2 of places2" [label]="place2.name">
-                  <option *ngFor="let stop of place2.stop" [value]="stop">
-                    {{ stop }}
+                  <option *ngFor="let stop of place2.stops" [value]="stop.value">
+                    {{ stop.viewValue }}
                   </option>
                 </optgroup>
               </select>
