@@ -3,12 +3,12 @@ import { Stop } from './stop';
 export class GroupByCity {
 
 
-    name: string;
+    city: string;
     stops: Stop[];
 
 
-    constructor(name: string, stops: Stop[]) {
-        this.name = name;
+    constructor(city: string, stops: Stop[]) {
+        this.city = city;
         this.stops = stops;
     }
 }

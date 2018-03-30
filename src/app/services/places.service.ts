@@ -23,7 +23,7 @@ export class PlacesService {
 
   prevCity: string;
   groups: GroupByCity[] = [];
-  group: GroupByCity;
+  findGroup: GroupByCity;
   name: string;
   stop: Stop;
   // stops: Stop[];
@@ -40,7 +40,7 @@ export class PlacesService {
           this.places.push(place as Place);
         });
         this.subject.next(this.places);
-        let stops = [];
+        const stops = [];
         const result = _.chain(this.places).groupBy('city').map(function (v, i) {
           return {
             name: i,
@@ -61,14 +61,27 @@ export class PlacesService {
         // );
 
 
-        result.forEach(city => {
-          // this.name = city.name;
-          city.stops.forEach(stop => {
-            stops.push( new Stop(stop, stop) );
-          });
-          this.groups.push( new GroupByCity(city.name, stops) );
-          stops = [];
-        }
+        // result.forEach(city => {
+        //   // this.name = city.name;
+        //   city.stops.forEach(stop => {
+        //     stops.push( new Stop(stop, stop) );
+        //   });
+        //   this.groups.push( new GroupByCity(city.name, stops) );
+        //   stops = [];
+        // }
+        // );
+
+        this.places.forEach(
+          place => {
+            this.findGroup = this.groups.find(
+              group => group.city === place.city
+            );
+            if (this.findGroup) {
+              this.findGroup.stops.push( new Stop(place.id, place.description) );
+            } else {
+              this.groups.push( new GroupByCity(place.city, [new Stop(place.id, place.description)]) );
+            }
+          }
         );
 
 
