@@ -7,35 +7,38 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { GroupByCity } from '../shared/model/groupByCity';
 
 @Component({
-  selector:  'app-select-places',
-  templateUrl:  './select-places.component.html',
-  styleUrls:  ['./select-places.component.css']
+  selector: 'app-select-places',
+  templateUrl: './select-places.component.html',
+  styleUrls: ['./select-places.component.css']
 })
 export class SelectPlacesComponent implements OnInit {
 
-  places:  GroupByCity[];
-
-  source: string;
-  destination: string;
+  places: GroupByCity[];
+  showspinner: Boolean = true;
+  // source: string;
+  // destination: string;
 
   selectTripForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    private placesService:  PlacesService,
+    private placesService: PlacesService,
     private route: ActivatedRoute,
     private router: Router) {
-      this.createForm();
-    }
+    this.createForm();
+
+  }
 
   ngOnInit() {
-    this.placesService.getPlaces();
-      this.placesService.places$
+
+    this.placesService.places$
       .subscribe(
-        data => {
+      data => {
         this.places = data;
+        if (data[1]) { this.showspinner = false; } // if the places have been retrieved then hide loading spinner
         console.log(data);
       });
+    this.placesService.getPlaces();
   }
 
   createForm() {
@@ -46,7 +49,7 @@ export class SelectPlacesComponent implements OnInit {
   }
 
   onSubmit() {
-    this.router.navigate(['showtrips'], {relativeTo: this.route});
+    this.router.navigate(['showtrips'], { relativeTo: this.route });
     console.log(this.selectTripForm.value);
   }
 

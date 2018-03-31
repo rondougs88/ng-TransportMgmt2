@@ -1,4 +1,4 @@
-import { SelectPlacesResolver } from './select-places/select-places.resolver';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {RouterModule} from '@angular/router';
@@ -19,7 +19,8 @@ import { ReportAvailableTripsComponent } from './report-available-trips/report-a
   declarations: [
     AppComponent,
     SelectPlacesComponent,
-    ReportAvailableTripsComponent
+    ReportAvailableTripsComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -31,8 +32,7 @@ import { ReportAvailableTripsComponent } from './report-available-trips/report-a
     FormsModule
   ],
   providers: [
-    PlacesService,
-    SelectPlacesResolver],
+    PlacesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
