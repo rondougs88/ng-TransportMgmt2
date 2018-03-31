@@ -1,0 +1,37 @@
+<div class="col-xs-7 col-xs-offset-2">
+  <h2>Select your trip:</h2>
+
+  <app-loading-spinner *ngIf="showspinner else form"></app-loading-spinner>
+
+  <ng-template #form>
+    <form [formGroup]="selectTripForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label class="center-block" for="source">Source:</label>
+        <select class="form-control inputstl" formControlName="source">
+          <option>-- None --</option>
+          <optgroup *ngFor="let place of places" [label]="place.city">
+            <option *ngFor="let stop of place.stops" [value]="stop.value">
+              {{ stop.viewValue }}
+            </option>
+          </optgroup>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="destination">Destination:</label>
+        <select class="form-control inputstl" formControlName="destination">
+          <option>-- None --</option>
+          <optgroup *ngFor="let place of places" [label]="place.city">
+            <option *ngFor="let stop of place.stops" [value]="stop.value">
+              {{ stop.viewValue }}
+            </option>
+          </optgroup>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-success pull-right" style="width: 100px; height: 40px" [disabled]="!selectTripForm.valid">Go</button>
+
+    </form>
+  </ng-template>
+</div>

@@ -1,0 +1,21 @@
+{
+  "name": "availabletrips",
+  "version": "1.0.0",
+  "description": "available trips data server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "test",
+    "data"
+  ],
+  "author": "Ron",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "~3.6.13",
+    "body-parser": "~1.0.1"
+  }
+}
