@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
-import { Place } from '../shared/model/place';
 import { PlacesService } from '../services/places.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { GroupByCity } from '../shared/model/groupByCity';
 
 @Component({
   selector:  'app-select-places',
@@ -13,8 +13,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 })
 export class SelectPlacesComponent implements OnInit {
 
-  places:  Place[];
-  places2:  any[];
+  places:  GroupByCity[];
 
   source: string;
   destination: string;
@@ -31,16 +30,10 @@ export class SelectPlacesComponent implements OnInit {
 
   ngOnInit() {
     this.placesService.getPlaces();
-    // this.placesService.places$
-    //   .subscribe(
-    //     data => {
-    //     this.places = data;
-    //     console.log(data);
-    //   });
-      this.placesService.places2$
+      this.placesService.places$
       .subscribe(
         data => {
-        this.places2 = data;
+        this.places = data;
         console.log(data);
       });
   }

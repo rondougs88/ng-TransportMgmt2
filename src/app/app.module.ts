@@ -1,3 +1,4 @@
+import { SelectPlacesResolver } from './select-places/select-places.resolver';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {RouterModule} from '@angular/router';
@@ -8,8 +9,6 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
-import { HomeComponent } from './home/home.component';
-import { PlacesListComponent } from './places-list/places-list.component';
 import { PlacesService } from './services/places.service';
 import { HttpModule } from '@angular/http';
 import { SelectPlacesComponent } from './select-places/select-places.component';
@@ -19,8 +18,6 @@ import { ReportAvailableTripsComponent } from './report-available-trips/report-a
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    PlacesListComponent,
     SelectPlacesComponent,
     ReportAvailableTripsComponent
   ],
@@ -33,7 +30,9 @@ import { ReportAvailableTripsComponent } from './report-available-trips/report-a
     AngularFireDatabaseModule,
     FormsModule
   ],
-  providers: [PlacesService],
+  providers: [
+    PlacesService,
+    SelectPlacesResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
