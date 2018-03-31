@@ -15,7 +15,7 @@ export class PlacesListComponent implements OnInit {
   constructor(private placesService: PlacesService) { }
 
   ngOnInit() {
-    this.places$ = this.placesService.places$;
+    // this.places$ = this.placesService.places$;
   }
 
 }

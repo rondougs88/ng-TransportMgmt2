@@ -13,6 +13,7 @@ import { PlacesListComponent } from './places-list/places-list.component';
 import { PlacesService } from './services/places.service';
 import { HttpModule } from '@angular/http';
 import { SelectPlacesComponent } from './select-places/select-places.component';
+import { ReportAvailableTripsComponent } from './report-available-trips/report-available-trips.component';
 
 
 @NgModule({
@@ -20,13 +21,15 @@ import { SelectPlacesComponent } from './select-places/select-places.component';
     AppComponent,
     HomeComponent,
     PlacesListComponent,
-    SelectPlacesComponent
+    SelectPlacesComponent,
+    ReportAvailableTripsComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     RouterModule.forRoot(routerConfig),
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    ReactiveFormsModule,
     AngularFireDatabaseModule,
     FormsModule
   ],
