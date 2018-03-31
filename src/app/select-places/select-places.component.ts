@@ -35,7 +35,7 @@ export class SelectPlacesComponent implements OnInit {
       .subscribe(
       data => {
         this.places = data;
-        if (data[1]) { this.showspinner = false; } // if the places have been retrieved then hide loading spinner
+        if (data.length !== 0) { this.showspinner = false; } // if the places have been retrieved then hide loading spinner
         console.log(data);
       });
     this.placesService.getPlaces();

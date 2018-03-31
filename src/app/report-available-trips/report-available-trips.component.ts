@@ -1,3 +1,4 @@
+import { Http } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportAvailableTripsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: Http) { }
 
   ngOnInit() {
+    this.http.get(`http://localhost:8010/api/trips`)
+                .map(res => res.json())
+                .subscribe(data => console.log(data));
   }
 
 }
