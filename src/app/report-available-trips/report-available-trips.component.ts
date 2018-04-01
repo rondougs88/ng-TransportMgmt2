@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { AvailTrips } from './../shared/model/availTrips';
 import { Observable } from 'rxjs/Observable';
 import { AvailableTripsService } from './../services/available-trips.service';
@@ -15,7 +16,9 @@ export class ReportAvailableTripsComponent implements OnInit {
   selectedRowIndex: Number = -1;
 
   constructor(private http: Http,
-    private availableTripsService: AvailableTripsService) { }
+              private availableTripsService: AvailableTripsService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.availableTrips$ = this.availableTripsService.availableTrips$;
@@ -24,6 +27,7 @@ export class ReportAvailableTripsComponent implements OnInit {
   chooseTrip(trip: AvailTrips, index: number) {
     this.selectedRowIndex = index;
     this.availableTripsService.processBooking(trip);
+    this.router.navigate(['providedetails'], { relativeTo: this.route });
   }
 
 }

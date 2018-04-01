@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="pointer" *ngIf = "selectedTrips$ | async as selectedTrip">
+      <tr *ngIf = "selectedTrips$ | async as selectedTrip">
         <td>{{selectedTrip.source}}</td>
         <td>{{selectedTrip.destination}}</td>
         <td>{{selectedTrip.from_time}}</td>
