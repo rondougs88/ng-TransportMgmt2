@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AvailableTripsService } from './../services/available-trips.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators, FormControl, ValidatorFn } from '@angular/forms';
 
 import { PlacesService } from '../services/places.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -13,8 +14,11 @@ import { GroupByCity } from '../shared/model/groupByCity';
 })
 export class SelectPlacesComponent implements OnInit {
 
+  @ViewChild('source') source: RegExp;
+
   places: GroupByCity[];
   showspinner: Boolean = true;
+  titleAlert: String = 'This field is required';
   // source: string;
   // destination: string;
 
@@ -24,6 +28,7 @@ export class SelectPlacesComponent implements OnInit {
     private fb: FormBuilder,
     private placesService: PlacesService,
     private route: ActivatedRoute,
+    private availableTripsService: AvailableTripsService,
     private router: Router) {
     this.createForm();
 
@@ -43,16 +48,32 @@ export class SelectPlacesComponent implements OnInit {
 
   createForm() {
     this.selectTripForm = this.fb.group({
-      source: '',
-      destination: ''
-    });
+      source: [null, Validators.required],
+      destination: [null, [Validators.required]]
+    },
+      { validator: matchingStops('source', 'destination') }
+    );
   }
 
   onSubmit() {
+    this.availableTripsService.getFormValue(this.selectTripForm.value);
     this.router.navigate(['showtrips'], { relativeTo: this.route });
     console.log(this.selectTripForm.value);
   }
 
+}
+
+function matchingStops(source: string, destination: string) {
+  return (group: FormGroup) => {
+    const source2 = group.controls[source];
+    const destination2 = group.controls[destination];
+    if (source2.value === destination2.value && destination2.value !== null) {
+      console.log('dest2 val:', destination2.value);
+      return destination2.setErrors({ 'theSame': true });
+    } else if (destination2.value) {
+      return destination2.setErrors(null);
+    }
+  };
 }
 
 

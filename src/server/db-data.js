@@ -4,8 +4,32 @@ module.exports = {
             'source': 1,
             'destination': 5,
             'from_time': '6:00:00',
-            'to_time': '6:00:00',
+            'to_time': '7:00:00',
             'bus_id': 'bus01',
+            'price': 5
+        },
+        {
+            'source': 1,
+            'destination': 5,
+            'from_time': '8:00:00',
+            'to_time': '9:00:00',
+            'bus_id': 'bus21',
+            'price': 5
+        },
+        {
+            'source': 1,
+            'destination': 5,
+            'from_time': '10:00:00',
+            'to_time': '11:00:00',
+            'bus_id': 'bus31',
+            'price': 5
+        },
+        {
+            'source': 1,
+            'destination': 5,
+            'from_time': '12:00:00',
+            'to_time': '13:00:00',
+            'bus_id': 'bus41',
             'price': 5
         },
         {

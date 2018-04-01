@@ -1,3 +1,6 @@
+import { AvailTrips } from './../shared/model/availTrips';
+import { Observable } from 'rxjs/Observable';
+import { AvailableTripsService } from './../services/available-trips.service';
 import { Http } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,12 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportAvailableTripsComponent implements OnInit {
 
-  constructor(private http: Http) { }
+  availableTrips$: Observable<AvailTrips[]>;
+
+  constructor(private http: Http,
+              private availableTripsService: AvailableTripsService) { }
 
   ngOnInit() {
-    this.http.get(`http://localhost:8010/api/trips`)
-                .map(res => res.json())
-                .subscribe(data => console.log(data));
+    // this.http.get(`http://localhost:8010/api/trips`)
+    //             .map(res => res.json())
+    //             .subscribe(data => console.log(data));
+    this.availableTrips$ = this.availableTripsService.availableTrips$;
+      // .subscribe(
+      //   data => console.log('logging this:', data)
+      // );
   }
 
 }

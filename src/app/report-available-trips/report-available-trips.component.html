@@ -1,3 +1,25 @@
-<p>
-  report-available-trips works!
-</p>
+<div class="container">
+  <h2>Available Trips</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Source</th>
+        <th>Destination</th>
+        <th>Departure Time</th>
+        <th>Arrival Time</th>
+        <th>Bus ID</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let trips of availableTrips$ | async">
+        <td>{{trips.source}}</td>
+        <td>{{trips.destination}}</td>
+        <td>{{trips.from_time}}</td>
+        <td>{{trips.to_time}}</td>
+        <td>{{trips.bus_id}}</td>
+        <td>{{trips.price}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

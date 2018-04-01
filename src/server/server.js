@@ -27,11 +27,14 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.route('/api/trips').get((req, res) => {
+app.route('/api/trips/:source/:destination').get((req, res) => {
   const trips = dbData;
 
-  const trip = dbData.find(data => {
-      return ( data.source === 2 && data.destination === 5);
+  const source = parseInt(req.params['source']);
+  const destination = parseInt(req.params['destination']);
+
+  const trip = trips.filter(data => {
+      return ( data.source === source && data.destination === destination);
   });
   res.status(200).json(
       trip

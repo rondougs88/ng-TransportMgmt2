@@ -1,3 +1,4 @@
+import { AvailableTripsService } from './services/available-trips.service';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -34,7 +35,8 @@ import { ReportAvailableTripsComponent } from './report-available-trips/report-a
     FormsModule
   ],
   providers: [
-    PlacesService],
+    PlacesService,
+    AvailableTripsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
