@@ -16,6 +16,7 @@ import { PlacesService } from './services/places.service';
 import { HttpModule } from '@angular/http';
 import { SelectPlacesComponent } from './select-places/select-places.component';
 import { ReportAvailableTripsComponent } from './report-available-trips/report-available-trips.component';
+import { BookingDetailsComponent } from './booking-details/booking-details.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ReportAvailableTripsComponent } from './report-available-trips/report-a
     AppComponent,
     SelectPlacesComponent,
     ReportAvailableTripsComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    BookingDetailsComponent
   ],
   imports: [
     BrowserModule,

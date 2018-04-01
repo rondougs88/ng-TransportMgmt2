@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Available Trips</h2>
+  <h2>Choose from the available trips below</h2>
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -12,14 +12,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let trips of availableTrips$ | async">
-        <td>{{trips.source}}</td>
-        <td>{{trips.destination}}</td>
-        <td>{{trips.from_time}}</td>
-        <td>{{trips.to_time}}</td>
-        <td>{{trips.bus_id}}</td>
-        <td>{{trips.price}}</td>
+      <tr class="pointer" *ngFor="let trip of availableTrips$ | async; let index = index" (click)="chooseTrip(trip, index)">
+        <td [ngClass]="{'highlight': selectedRowIndex === index}">{{trip.source}}</td>
+        <td [ngClass]="{'highlight': selectedRowIndex === index}">{{trip.destination}}</td>
+        <td [ngClass]="{'highlight': selectedRowIndex === index}">{{trip.from_time}}</td>
+        <td [ngClass]="{'highlight': selectedRowIndex === index}">{{trip.to_time}}</td>
+        <td [ngClass]="{'highlight': selectedRowIndex === index}">{{trip.bus_id}}</td>
+        <td [ngClass]="{'highlight': selectedRowIndex === index}">{{trip.price}}</td>
       </tr>
     </tbody>
   </table>
+
+  <app-booking-details *ngIf="selectedRowIndex > -1"></app-booking-details>
+
 </div>

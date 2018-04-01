@@ -11,6 +11,12 @@
     border: 1.5px solid #f00;
 }
 
+.pointer { cursor: pointer; }
+
+.highlight{
+    background: #42A948; /* green */
+  }
+
 @keyframes alertAnim {
     from {
         opacity:0;

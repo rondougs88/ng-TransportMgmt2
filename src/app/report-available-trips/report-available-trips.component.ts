@@ -12,18 +12,18 @@ import { Component, OnInit } from '@angular/core';
 export class ReportAvailableTripsComponent implements OnInit {
 
   availableTrips$: Observable<AvailTrips[]>;
+  selectedRowIndex: Number = -1;
 
   constructor(private http: Http,
-              private availableTripsService: AvailableTripsService) { }
+    private availableTripsService: AvailableTripsService) { }
 
   ngOnInit() {
-    // this.http.get(`http://localhost:8010/api/trips`)
-    //             .map(res => res.json())
-    //             .subscribe(data => console.log(data));
     this.availableTrips$ = this.availableTripsService.availableTrips$;
-      // .subscribe(
-      //   data => console.log('logging this:', data)
-      // );
+  }
+
+  chooseTrip(trip: AvailTrips, index: number) {
+    this.selectedRowIndex = index;
+    this.availableTripsService.processBooking(trip);
   }
 
 }
