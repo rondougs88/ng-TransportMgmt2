@@ -1,9 +1,12 @@
 // var tools = require('./get-trips.js');
 var dbData = require('./db-data.js').dbData;
+// var dbBookedTrips = require('./db-bookedtrips.js').bookedtrips;
 
 // const getTrips = tools.getTrips;
 
 const express = require('express');
+const bodyParser = require('body-parser');
+const fs = require('fs');
 
 const app = express();
 
@@ -34,18 +37,69 @@ app.route('/api/trips/:source/:destination').get((req, res) => {
   const destination = parseInt(req.params['destination']);
 
   const trip = trips.filter(data => {
-      return ( data.source === source && data.destination === destination);
+    return (data.source === source && data.destination === destination);
   });
   res.status(200).json(
-      trip
-  //     {
-  //     'id': course.id,
-  //     'url': course.url,
-  //     'description': course.description
-  // }
-);
+    trip
+  );
+});
+
+app.use(bodyParser.json());
+
+app.route('/api/savebooking').post((req, res) => {
+  // const bookedtrips = dbBookedTrips;
+  const bookedTrip = req.body;
+
+  // const source = parseInt(req.params['source']);
+  // const destination = parseInt(req.params['destination']);
+
+  // const trip = trips.filter(data => {
+  //     return ( data.source === source && data.destination === destination);
+  // });
+
+  // -------------------------------------------
+  fs.readFile("db-bookedtrips.json", "utf8", function (err, data) {
+    if (err)
+      return next(err);
+
+    var allData;
+    try {
+      allData = JSON.parse(data);
+    } catch (err) {
+      return next(err);
+    }
+
+    // find index of element in allData
+    // var i = allData.reduce(function(iRes, e, iCurr) {
+    //      return (e.id == userData.id) ? iCurr : iRes
+    // }, -1);
+
+    // if (i == -1 && (operation == 'update' || operation == 'delete'))
+    //     return next(new Error(operation + ': Bad id'));
+
+
+    // if (operation == 'update') 
+    //     allData[i] = userData;
+
+    // if (operation == 'delete') 
+    //     allData.splice(i, 1);
+
+    // if (operation == 'insert') 
+    allData.push(bookedTrip);
+
+    fs.writeFile("db-bookedtrips.json", JSON.stringify(allData), 'utf8', function (err) {
+      if (err)
+        return next(err);
+
+      res.end();
+    })
+  }); // end of readFile
+  // -------------------------------------------
+
+
+  res.send(200).send(bookedTrip);
 });
 
 app.listen(8010, () => {
-    console.log('Server started at port 8010!');
-  });
+  console.log('Server started at port 8010!');
+});

@@ -17,6 +17,7 @@ import { HttpModule } from '@angular/http';
 import { SelectPlacesComponent } from './select-places/select-places.component';
 import { ReportAvailableTripsComponent } from './report-available-trips/report-available-trips.component';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
+import { PassengerDetailsComponent } from './booking-details/passenger-details/passenger-details.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { BookingDetailsComponent } from './booking-details/booking-details.compo
     SelectPlacesComponent,
     ReportAvailableTripsComponent,
     LoadingSpinnerComponent,
-    BookingDetailsComponent
+    BookingDetailsComponent,
+    PassengerDetailsComponent
   ],
   imports: [
     BrowserModule,

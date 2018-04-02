@@ -1,0 +1,25 @@
+<h3>Passenger Details</h3>
+
+<div class="col-xs-8">
+  <form [formGroup]="passengerDetailsForm" (ngSubmit)="onSubmit()">
+    <div style="margin-bottom: 1em">
+      <button type="submit" [disabled]="passengerDetailsForm.pristine" class="btn btn-success">Save</button> &nbsp;
+      <button type="button" (click)="revert()" [disabled]="passengerDetailsForm.pristine" class="btn btn-danger">Revert</button>
+    </div>
+
+    <!-- Passenger Detail Controls -->
+    <div class="form-group">
+      <label class="center-block">Name:
+        <input class="form-control" formControlName="name">
+      </label>
+      <label class="center-block">Email:
+        <input class="form-control" formControlName="email" email>
+      </label>
+      <label class="center-block">Mobile number:
+        <input class="form-control" formControlName="mobile">
+      </label>
+    </div>
+
+
+  </form>
+</div>
