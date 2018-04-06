@@ -11,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   isCollapsed = true;
+  linkClicked = null;
 
   constructor(private router: Router) { }
 
@@ -18,7 +19,18 @@ export class NavbarComponent implements OnInit {
   }
 
   gotoMyBookingsList() {
+    this.linkClicked = 'mybookingslist';
     this.router.navigate(['mybookingslist']);
+  }
+
+  login() {
+    this.linkClicked = 'login';
+    this.router.navigate(['login']);
+  }
+
+  register() {
+    this.linkClicked = 'register';
+    this.router.navigate(['register']);
   }
 
 }

@@ -3,7 +3,7 @@ import { AvailTrips } from './../../shared/model/availTrips';
 import { Observable } from 'rxjs/Observable';
 import { AvailableTripsService } from './../../services/available-trips.service';
 import { BookingDetails } from './../../shared/model/booking-details';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -29,9 +29,9 @@ export class PassengerDetailsComponent implements OnInit {
 
   createForm() {
     this.passengerDetailsForm = this.fb.group({
-      name: '',
-      email: '',
-      mobile: '',
+      name: [null, Validators.required],
+      email: [null, Validators.required],
+      mobile: [null, Validators.required],
     });
   }
 

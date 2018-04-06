@@ -1,0 +1,58 @@
+import { User } from './../shared/model/user';
+import { UserService } from './../services/user-service.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AvailableTripsService } from './../services/available-trips.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-register-page',
+  templateUrl: './register-page.component.html',
+  styleUrls: ['./register-page.component.css']
+})
+export class RegisterPageComponent implements OnInit {
+
+  passengerDetailsForm: FormGroup;
+  showspinner = false;
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private userService: UserService) {
+    this.createForm();
+  }
+
+  ngOnInit() {
+  }
+
+  createForm() {
+    this.passengerDetailsForm = this.fb.group({
+      name: [null, Validators.required],
+      email: [null, Validators.required],
+      mobile: '',
+      password: [null, Validators.required],
+    });
+  }
+
+  onSubmit() {
+    this.showspinner = true;
+    const user = new User(
+      this.passengerDetailsForm.value.name,
+      this.passengerDetailsForm.value.email,
+      this.passengerDetailsForm.value.password);
+
+    this.userService.registerUser(user)
+      .subscribe(
+      res => {
+        this.router.navigate(['registrationsuccess'], { relativeTo: this.activatedRoute });  // navigate to default home page,
+        this.showspinner = false;
+      },
+      err => {
+        console.error(err);
+        this.showspinner = false;
+      }
+      );
+  }
+
+}

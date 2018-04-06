@@ -1,6 +1,5 @@
 export class Stop {
 
-
     value: string;
     viewValue: string;
 

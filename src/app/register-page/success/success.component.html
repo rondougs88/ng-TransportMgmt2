@@ -1,0 +1,20 @@
+<app-loading-spinner *ngIf="showspinner else form"></app-loading-spinner>
+
+<ng-template #form>
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-sm-6 col-sm-offset-3">
+        <br>
+        <br>
+        <h2 style="color:#0fad00">Registration Successful</h2>
+        <img src="assets/img/success.png">
+        <h3 *ngIf="name">Dear, {{ name }}</h3>
+        <p style="font-size:20px;color:#5C5C5C;">You may now start using your account.</p>
+        <a (click)="login()" class="btn btn-success">Log in</a>
+        <br>
+        <br>
+      </div>
+
+    </div>
+  </div>
+</ng-template>

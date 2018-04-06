@@ -1,13 +1,10 @@
-import { AvailableTripsService } from './services/available-trips.service';
-import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CollapseModule, BsDropdownModule } from 'ngx-bootstrap';
 
-
 import { AppComponent } from './app.component';
-import {RouterModule} from '@angular/router';
-import {routerConfig} from './router.config';
+import { RouterModule } from '@angular/router';
+import { routerConfig } from './router.config';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -22,7 +19,12 @@ import { PassengerDetailsComponent } from './booking-details/passenger-details/p
 import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MyBookingsListComponent } from './my-bookings-list/my-bookings-list.component';
-
+import { LoginPageComponent } from './login-page/login-page.component';
+import { RegisterPageComponent } from './register-page/register-page.component';
+import { UserService } from './services/user-service.service';
+import { AvailableTripsService } from './services/available-trips.service';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { SuccessComponent } from './register-page/success/success.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,10 @@ import { MyBookingsListComponent } from './my-bookings-list/my-bookings-list.com
     PassengerDetailsComponent,
     ConfirmationPageComponent,
     NavbarComponent,
-    MyBookingsListComponent
+    MyBookingsListComponent,
+    LoginPageComponent,
+    RegisterPageComponent,
+    SuccessComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +54,8 @@ import { MyBookingsListComponent } from './my-bookings-list/my-bookings-list.com
   ],
   providers: [
     PlacesService,
-    AvailableTripsService],
+    AvailableTripsService,
+    UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

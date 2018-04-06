@@ -1,3 +1,6 @@
+import { SuccessComponent } from './register-page/success/success.component';
+import { RegisterPageComponent } from './register-page/register-page.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 import { MyBookingsListComponent } from './my-bookings-list/my-bookings-list.component';
 import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
@@ -25,5 +28,17 @@ export const routerConfig: Routes = [
     {
         path: 'mybookingslist',
         component: MyBookingsListComponent
+    },
+    {
+        path: 'login',
+        component: LoginPageComponent
+    },
+    {
+        path: 'register',
+        component: RegisterPageComponent
+    },
+    {
+        path: 'register/registrationsuccess',
+        component: SuccessComponent
     },
 ];

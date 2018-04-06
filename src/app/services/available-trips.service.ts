@@ -39,9 +39,6 @@ export class AvailableTripsService {
 
     this.saveBooking$ = this.http.post('http://localhost:8010/api/savebooking', bookingdetails, options);
     return this.saveBooking$;
-    // .do(user => console.log(user))
-    // .do(user => this.subject.next(user))
-    // .publishLast().refCount();
   }
 
   getMyBookings(): Observable<BookingDetails[]> {

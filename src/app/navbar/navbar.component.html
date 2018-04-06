@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" style="margin-top: -26px">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -14,18 +14,19 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" [collapse]=isCollapsed>
       <ul class="nav navbar-nav">
-        <li class="active">
-          <a href="#">Link
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
-        <li class="pointer">
-          <a (click) = "gotoMyBookingsList()">My Bookings</a>
+        <li [ngClass]="{'active': linkClicked === 'mybookingslist'}" class="pointer">
+          <a (click)="gotoMyBookingsList()">My Bookings</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li [ngClass]="{'active': linkClicked === 'login'}" class="pointer">
+          <a (click)="login()">Login</a>
+        </li>
         <li>
-          <a href="#">Link</a>
+          <a class="hidden-xs">|</a>
+        </li>
+        <li [ngClass]="{'active': linkClicked === 'register'}" class="pointer">
+          <a (click)="register()">Register</a>
         </li>
       </ul>
     </div>
