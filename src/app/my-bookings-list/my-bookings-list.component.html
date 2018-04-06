@@ -1,0 +1,26 @@
+<div class="container">
+  <h2>My Bookings List</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Source</th>
+        <th>Destination</th>
+        <th>Departure Time</th>
+        <th>Arrival Time</th>
+        <th>Bus ID</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="pointer" *ngFor="let mybooking of myBookings$ | async; let index = index" (click)="chooseBooking(mybooking, index)">
+        <td [ngClass]="{'highlight': selectedRowIndex === index}">{{mybooking.source}}</td>
+        <td [ngClass]="{'highlight': selectedRowIndex === index}">{{mybooking.destination}}</td>
+        <td [ngClass]="{'highlight': selectedRowIndex === index}">{{mybooking.from_time}}</td>
+        <td [ngClass]="{'highlight': selectedRowIndex === index}">{{mybooking.to_time}}</td>
+        <td [ngClass]="{'highlight': selectedRowIndex === index}">{{mybooking.bus_id}}</td>
+        <td [ngClass]="{'highlight': selectedRowIndex === index}">{{mybooking.price}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

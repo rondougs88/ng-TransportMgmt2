@@ -1,3 +1,5 @@
+import { MyBookingsListComponent } from './my-bookings-list/my-bookings-list.component';
+import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
 import { SelectPlacesComponent } from './select-places/select-places.component';
 import { ReportAvailableTripsComponent } from './report-available-trips/report-available-trips.component';
@@ -15,5 +17,13 @@ export const routerConfig: Routes = [
     {
         path: 'showtrips/providedetails',
         component: BookingDetailsComponent
+    },
+    {
+        path: 'confirmation',
+        component: ConfirmationPageComponent
+    },
+    {
+        path: 'mybookingslist',
+        component: MyBookingsListComponent
     },
 ];

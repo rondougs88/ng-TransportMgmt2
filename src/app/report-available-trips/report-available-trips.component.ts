@@ -22,6 +22,7 @@ export class ReportAvailableTripsComponent implements OnInit {
 
   ngOnInit() {
     this.availableTrips$ = this.availableTripsService.availableTrips$;
+    this.availableTrips$.subscribe(data => console.log(data));
   }
 
   chooseTrip(trip: AvailTrips, index: number) {

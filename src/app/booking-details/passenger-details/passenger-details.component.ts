@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AvailTrips } from './../../shared/model/availTrips';
 import { Observable } from 'rxjs/Observable';
 import { AvailableTripsService } from './../../services/available-trips.service';
@@ -18,7 +19,8 @@ export class PassengerDetailsComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private availableTripsService: AvailableTripsService) {
+    private availableTripsService: AvailableTripsService,
+    private router: Router) {
       this.createForm();
      }
 
@@ -39,7 +41,7 @@ export class PassengerDetailsComponent implements OnInit {
     subscribe(
       (res) => console.log('Saved to database:', res)
     );
-    // this.rebuildForm();
+    this.router.navigate(['confirmation']);
   }
 
   prepareBookingDetails() {

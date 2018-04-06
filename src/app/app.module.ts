@@ -2,6 +2,7 @@ import { AvailableTripsService } from './services/available-trips.service';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CollapseModule, BsDropdownModule } from 'ngx-bootstrap';
 
 
 import { AppComponent } from './app.component';
@@ -18,6 +19,9 @@ import { SelectPlacesComponent } from './select-places/select-places.component';
 import { ReportAvailableTripsComponent } from './report-available-trips/report-available-trips.component';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
 import { PassengerDetailsComponent } from './booking-details/passenger-details/passenger-details.component';
+import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { MyBookingsListComponent } from './my-bookings-list/my-bookings-list.component';
 
 
 @NgModule({
@@ -27,7 +31,10 @@ import { PassengerDetailsComponent } from './booking-details/passenger-details/p
     ReportAvailableTripsComponent,
     LoadingSpinnerComponent,
     BookingDetailsComponent,
-    PassengerDetailsComponent
+    PassengerDetailsComponent,
+    ConfirmationPageComponent,
+    NavbarComponent,
+    MyBookingsListComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +43,9 @@ import { PassengerDetailsComponent } from './booking-details/passenger-details/p
     AngularFireModule.initializeApp(environment.firebaseConfig),
     ReactiveFormsModule,
     AngularFireDatabaseModule,
-    FormsModule
+    FormsModule,
+    CollapseModule.forRoot(),
+    BsDropdownModule.forRoot()
   ],
   providers: [
     PlacesService,

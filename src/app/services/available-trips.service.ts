@@ -9,12 +9,16 @@ import { Injectable } from '@angular/core';
 export class AvailableTripsService {
 
   private selectedTripsubject = new BehaviorSubject<AvailTrips>(new AvailTrips('', '', '', null, '', ''));
+  private savedBooking = new BehaviorSubject<any>('');
+  private myBookingsSubject = new BehaviorSubject<BookingDetails[]>([]);
 
   private bookingDetails: BookingDetails;
   private selectedTrip: AvailTrips;
 
   availableTrips$: Observable<AvailTrips[]>;
   selectedTrip$: Observable<AvailTrips> = this.selectedTripsubject.asObservable();
+  saveBooking$: Observable<any> = this.savedBooking.asObservable();
+  myBookings$: Observable<BookingDetails[]> = this.myBookingsSubject.asObservable();
 
   constructor(private http: Http) { }
 
@@ -33,11 +37,22 @@ export class AvailableTripsService {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
 
-    return this.http.post('http://localhost:8010/api/savebooking', { bookingdetails }, options  );
-      // .map(res => res.json());
-      // .do(user => console.log(user))
-      // .do(user => this.subject.next(user))
-      // .publishLast().refCount();
+    this.saveBooking$ = this.http.post('http://localhost:8010/api/savebooking', bookingdetails, options);
+    return this.saveBooking$;
+    // .do(user => console.log(user))
+    // .do(user => this.subject.next(user))
+    // .publishLast().refCount();
+  }
+
+  getMyBookings(): Observable<BookingDetails[]> {
+    this.myBookings$ = this.http.get('http://localhost:8010/api/getmybookings')
+                          .map(res => {
+                            const data = res.json();
+                            return data;
+                            // return data.array.forEach(element => {
+                            //   return new BookingDetails()
+                            });
+    return this.myBookings$;
   }
 
 }
