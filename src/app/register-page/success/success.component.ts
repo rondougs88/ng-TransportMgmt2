@@ -1,5 +1,5 @@
 import { UserService } from './../../services/user-service.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -19,11 +19,13 @@ export class SuccessComponent implements OnInit {
     this.showspinner = true;
     this.userService.user$
       .subscribe(
-        res => {
+      res => {
+        if (res._body) {
           this.showspinner = false;
           const body = JSON.parse(res._body);
           this.name = body.obj.name;
         }
+      }
       );
   }
 

@@ -13,7 +13,6 @@ import { Component, OnInit } from '@angular/core';
 export class RegisterPageComponent implements OnInit {
 
   passengerDetailsForm: FormGroup;
-  showspinner = false;
 
   constructor(
     private fb: FormBuilder,
@@ -36,23 +35,12 @@ export class RegisterPageComponent implements OnInit {
   }
 
   onSubmit() {
-    this.showspinner = true;
     const user = new User(
       this.passengerDetailsForm.value.name,
       this.passengerDetailsForm.value.email,
       this.passengerDetailsForm.value.password);
 
-    this.userService.registerUser(user)
-      .subscribe(
-      res => {
-        this.router.navigate(['registrationsuccess'], { relativeTo: this.activatedRoute });  // navigate to default home page,
-        this.showspinner = false;
-      },
-      err => {
-        console.error(err);
-        this.showspinner = false;
-      }
-      );
+    this.userService.registerUser(user);
   }
 
 }

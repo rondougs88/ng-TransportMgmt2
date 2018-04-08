@@ -19,16 +19,19 @@ export class NavbarComponent implements OnInit {
   }
 
   gotoMyBookingsList() {
+    this.isCollapsed = true;
     this.linkClicked = 'mybookingslist';
     this.router.navigate(['mybookingslist']);
   }
 
   login() {
+    this.isCollapsed = true;
     this.linkClicked = 'login';
     this.router.navigate(['login']);
   }
 
   register() {
+    this.isCollapsed = true;
     this.linkClicked = 'register';
     this.router.navigate(['register']);
   }
