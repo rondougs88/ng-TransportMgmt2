@@ -1,10 +1,12 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { RequestOptions, Headers, Http } from '@angular/http';
+import { RequestOptions, Headers, Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { User } from './../shared/model/user';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class UserService {
@@ -34,7 +36,11 @@ export class UserService {
     const body = JSON.stringify(user);
     const headers = new Headers({ 'Content-Type': 'application/json' });
     return this.http.post('http://localhost:8010/api/user/login', body, { headers: headers })
-      .map(response => response.json());
+      .map(response => response.json())
+      .catch((err: Response) => {
+        const details = err.json();
+        return Observable.throw(details);
+     });
   }
 
   logout() {

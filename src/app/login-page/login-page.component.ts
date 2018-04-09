@@ -12,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 export class LoginPageComponent implements OnInit {
 
   passengerDetailsForm: FormGroup;
+  titleAlert: string;
 
   constructor(
     private fb: FormBuilder,
@@ -44,7 +45,10 @@ export class LoginPageComponent implements OnInit {
         localStorage.setItem('userId', data.userId);
         this.router.navigateByUrl('/');
       },
-      error => console.error(error)
+      error =>  {
+        console.error(error.error.message);
+        this.titleAlert = error.error.message;
+      }
       );
     this.passengerDetailsForm.reset();
   }

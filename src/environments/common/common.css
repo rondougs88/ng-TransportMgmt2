@@ -7,6 +7,16 @@
     animation: 1s alertAnim forwards;
 }
 
+.alertRed {
+    background: #f00;
+    color: honeydew;
+    padding: 7px;
+    font-size: .9em;
+    margin-bottom: 20px;
+    display: inline-block;
+    animation: 1s alertAnim forwards;
+}
+
 .inputerror {
     border: 1.5px solid #f00;
 }
