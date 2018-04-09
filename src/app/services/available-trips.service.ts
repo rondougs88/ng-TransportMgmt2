@@ -2,6 +2,7 @@ import { BookingDetails } from './../shared/model/booking-details';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subject } from 'rxjs/Subject';
 import { AvailTrips } from './../shared/model/availTrips';
 import { Injectable } from '@angular/core';
 
@@ -9,7 +10,7 @@ import { Injectable } from '@angular/core';
 export class AvailableTripsService {
 
   private selectedTripsubject = new BehaviorSubject<AvailTrips>(new AvailTrips('', '', '', null, '', ''));
-  private savedBooking = new BehaviorSubject<any>('');
+  private savedBookingSubject = new Subject<any>();
   private myBookingsSubject = new BehaviorSubject<BookingDetails[]>([]);
 
   private bookingDetails: BookingDetails;
@@ -17,7 +18,7 @@ export class AvailableTripsService {
 
   availableTrips$: Observable<AvailTrips[]>;
   selectedTrip$: Observable<AvailTrips> = this.selectedTripsubject.asObservable();
-  saveBooking$: Observable<any> = this.savedBooking.asObservable();
+  saveBooking$: Observable<any> = this.savedBookingSubject.asObservable();
   myBookings$: Observable<BookingDetails[]> = this.myBookingsSubject.asObservable();
 
   constructor(private http: Http) { }
@@ -36,13 +37,23 @@ export class AvailableTripsService {
   saveBooking(bookingdetails: BookingDetails) {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
+    const token = localStorage.getItem('token')
+            ? '?token=' + localStorage.getItem('token')
+            : '';
 
-    this.saveBooking$ = this.http.post('http://localhost:8010/api/savebooking', bookingdetails, options);
-    return this.saveBooking$;
+    // this.saveBooking$ =
+     this.http.post('http://localhost:8010/api/savebooking' + token, bookingdetails, options)
+         .subscribe(
+          res => this.savedBookingSubject.next(res)
+         );
+    // return this.saveBooking$;
   }
 
   getMyBookings(): Observable<BookingDetails[]> {
-    this.myBookings$ = this.http.get('http://localhost:8010/api/getmybookings')
+    const token = localStorage.getItem('token')
+    ? '?token=' + localStorage.getItem('token')
+    : '';
+    this.myBookings$ = this.http.get('http://localhost:8010/api/getmybookings' + token)
                           .map(res => {
                             const data = res.json();
                             return data;

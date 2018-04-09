@@ -8,25 +8,28 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Brand</a>
+      <a class="navbar-brand pointer" (click)="gotoHome()">Home</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" [collapse]=isCollapsed>
       <ul class="nav navbar-nav">
-        <li [ngClass]="{'active': linkClicked === 'mybookingslist'}" class="pointer">
+        <li *ngIf="isLoggedIn()" [ngClass]="{'active': linkClicked === 'mybookingslist'}" class="pointer">
           <a (click)="gotoMyBookingsList()">My Bookings</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li [ngClass]="{'active': linkClicked === 'login'}" class="pointer">
+        <li *ngIf="!isLoggedIn()" [ngClass]="{'active': linkClicked === 'login'}" class="pointer">
           <a (click)="login()">Login</a>
         </li>
-        <li>
+        <li *ngIf="!isLoggedIn()">
           <a class="hidden-xs">|</a>
         </li>
-        <li [ngClass]="{'active': linkClicked === 'register'}" class="pointer">
+        <li *ngIf="!isLoggedIn()" [ngClass]="{'active': linkClicked === 'register'}" class="pointer">
           <a (click)="register()">Register</a>
+        </li>
+        <li *ngIf="isLoggedIn()" class="pointer">
+          <a (click)="onLogout()">Logout</a>
         </li>
       </ul>
     </div>

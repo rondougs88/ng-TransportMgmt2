@@ -35,10 +35,14 @@ export class UserService {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     return this.http.post('http://localhost:8010/api/user/login', body, { headers: headers })
       .map(response => response.json());
-      // .catch((error: Response) => {
-      //   // this.errorService.handleError(error.json());
-      //   // return Observable.throw(error.json());
-      // });
+  }
+
+  logout() {
+    localStorage.clear();
+  }
+
+  isLoggedIn() {
+    return localStorage.getItem('token') !== null;
   }
 
 }

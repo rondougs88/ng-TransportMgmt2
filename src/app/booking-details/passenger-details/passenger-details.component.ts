@@ -21,8 +21,8 @@ export class PassengerDetailsComponent implements OnInit {
     private fb: FormBuilder,
     private availableTripsService: AvailableTripsService,
     private router: Router) {
-      this.createForm();
-     }
+    this.createForm();
+  }
 
   ngOnInit() {
   }
@@ -37,17 +37,22 @@ export class PassengerDetailsComponent implements OnInit {
 
   onSubmit() {
     this.prepareBookingDetails();
-    this.availableTripsService.saveBooking(this.bookingdetails).
-    subscribe(
-      (res) => console.log('Saved to database:', res)
-    );
+    this.availableTripsService.saveBooking(this.bookingdetails);
+    // this.availableTripsService.saveBooking$
+    //   .subscribe(
+    //   (res) => {
+    //     if (res) {
+    //       console.log('Saved to database:', res);
+    //     }
+    //   }
+    //   );
     this.router.navigate(['confirmation']);
   }
 
   prepareBookingDetails() {
     this.availableTripsService.selectedTrip$
       .subscribe(
-        selectedTrip => this.selectedTrip = selectedTrip
+      selectedTrip => this.selectedTrip = selectedTrip
       );
     this.bookingdetails = new BookingDetails(
       Math.random().toString(36).substr(2, 9), // Booking ID
@@ -72,12 +77,12 @@ export class PassengerDetailsComponent implements OnInit {
     let day: string = null;
     let month: string = null;
     if (dd < 10) {
-        day = '0' + dd;
+      day = '0' + dd;
     }
     if (mm < 10) {
-        month = '0' + mm;
+      month = '0' + mm;
     }
-   return month + '/' + day + '/' + yyyy;
+    return month + '/' + day + '/' + yyyy;
   }
 
 }

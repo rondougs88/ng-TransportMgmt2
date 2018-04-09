@@ -11,13 +11,19 @@ import { Component, OnInit } from '@angular/core';
 export class ConfirmationPageComponent implements OnInit {
 
   bookingID: number;
+  showspinner = true;
 
   constructor(private availableTripsService: AvailableTripsService) { }
 
   ngOnInit() {
     this.availableTripsService.saveBooking$
       .subscribe(
-        res => this.bookingID = JSON.parse(res._body).obj.bookingId
+      res => {
+        if (res) {
+          this.showspinner = false;
+          this.bookingID = JSON.parse(res._body).obj.bookingId;
+        }
+      }
       );
   }
 

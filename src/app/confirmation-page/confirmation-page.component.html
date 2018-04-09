@@ -1,4 +1,8 @@
-<h1 class="text-center">Thank You!</h1>
-<h2 class="text-center">Your Booking is confirmed.</h2>
-<hr>
-<h4 class="text-center">Your booking id is: {{ bookingID }}</h4>
+<app-loading-spinner *ngIf="showspinner else form"></app-loading-spinner>
+
+<ng-template #form>
+    <h1 class="text-center">Thank You!</h1>
+    <h2 class="text-center">Your Booking is confirmed.</h2>
+    <hr>
+    <h4 class="text-center">Your booking id is: {{ bookingID }}</h4>
+</ng-template>

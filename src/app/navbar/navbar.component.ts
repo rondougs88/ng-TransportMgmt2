@@ -1,3 +1,4 @@
+import { UserService } from './../services/user-service.service';
 import { Router } from '@angular/router';
 import { AvailableTripsService } from './../services/available-trips.service';
 import { BookingDetails } from './../shared/model/booking-details';
@@ -13,7 +14,8 @@ export class NavbarComponent implements OnInit {
   isCollapsed = true;
   linkClicked = null;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private userService: UserService) { }
 
   ngOnInit() {
   }
@@ -34,6 +36,21 @@ export class NavbarComponent implements OnInit {
     this.isCollapsed = true;
     this.linkClicked = 'register';
     this.router.navigate(['register']);
+  }
+
+  onLogout() {
+    this.isCollapsed = true;
+    this.userService.logout();
+    this.router.navigate(['/']);
+  }
+
+  gotoHome() {
+    this.isCollapsed = true;
+    this.router.navigate(['/']);
+  }
+
+  isLoggedIn() {
+    return this.userService.isLoggedIn();
   }
 
 }
