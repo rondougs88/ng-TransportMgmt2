@@ -4,33 +4,13 @@
     background-image: url(/assets/img/bus.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: 0px -214px;
     color: white;
-    background: contain;
+    margin-bottom: 26px;
     width: 100%; /* make sure to define width to fill container */
-    height: 100px; /* define the height in pixels or make sure   */
+    height: 148px; /* define the height in pixels or make sure   */
                    /* you have something in your div with height */
                    /* so you can see your image */
-    max-width:1400px;  /* define the max width */
 }
 
-  @media screen and (max-width: 992px) {
-    .jumbotron {
-        background-position: 0px -280px;
-        height: 150px;
-    }
-  }
 
-  @media screen and (max-width: 615px) {
-    .jumbotron {
-        background-position: 0px -224px;
-        height: 126px;
-    }
-  }
-
-  @media screen and (max-width: 400px) {
-    .jumbotron {
-        background-position: 0px -54px;
-        height: 126px;
-    }
-  }

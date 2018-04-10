@@ -25,7 +25,6 @@ import { UserService } from './services/user-service.service';
 import { AvailableTripsService } from './services/available-trips.service';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { SuccessComponent } from './register-page/success/success.component';
-import { ErrorMessageComponent } from './error-message/error-message.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +40,6 @@ import { ErrorMessageComponent } from './error-message/error-message.component';
     LoginPageComponent,
     RegisterPageComponent,
     SuccessComponent,
-    ErrorMessageComponent,
   ],
   imports: [
     BrowserModule,
