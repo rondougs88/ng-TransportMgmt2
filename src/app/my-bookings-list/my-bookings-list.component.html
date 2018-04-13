@@ -14,13 +14,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="pointer" (click)="viewBooking(mybooking, index)" *ngFor="let mybooking of myBookings$ | async; let index = index" >
-          <td [ngClass]="{'highlight': selectedRowIndex === index}">{{mybooking.source}}</td>
-          <td [ngClass]="{'highlight': selectedRowIndex === index}">{{mybooking.destination}}</td>
-          <td [ngClass]="{'highlight': selectedRowIndex === index}">{{mybooking.from_time}}</td>
-          <td [ngClass]="{'highlight': selectedRowIndex === index}">{{mybooking.to_time}}</td>
-          <td [ngClass]="{'highlight': selectedRowIndex === index}">{{mybooking.bus_id}}</td>
-          <td [ngClass]="{'highlight': selectedRowIndex === index}">{{mybooking.price}}</td>
+        <tr class="pointer" *ngFor="let mybooking of myBookings$ | async; let index = index" >
+          <td (click)="viewBooking(mybooking, index)" [ngClass]="{'highlight': selectedRowIndex === index}">{{mybooking.source}}</td>
+          <td (click)="viewBooking(mybooking, index)" [ngClass]="{'highlight': selectedRowIndex === index}">{{mybooking.destination}}</td>
+          <td (click)="viewBooking(mybooking, index)" [ngClass]="{'highlight': selectedRowIndex === index}">{{mybooking.from_time}}</td>
+          <td (click)="viewBooking(mybooking, index)" [ngClass]="{'highlight': selectedRowIndex === index}">{{mybooking.to_time}}</td>
+          <td (click)="viewBooking(mybooking, index)" [ngClass]="{'highlight': selectedRowIndex === index}">{{mybooking.bus_id}}</td>
+          <td (click)="viewBooking(mybooking, index)" [ngClass]="{'highlight': selectedRowIndex === index}">{{mybooking.price}}</td>
           <td><div class="btn-group">
             <button type="button" class="btn btn-default btn" (click)="viewBooking(mybooking, index)"><i class="glyphicon glyphicon-eye-open"></i></button>
             <button type="button" class="btn btn-default btn" (click)="editBooking(mybooking, index)"><i class="glyphicon glyphicon-pencil"></i></button>

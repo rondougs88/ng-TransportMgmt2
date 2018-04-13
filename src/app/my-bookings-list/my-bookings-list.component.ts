@@ -31,4 +31,12 @@ export class MyBookingsListComponent implements OnInit {
     this.router.navigate(['edit'], { relativeTo: this.route });
   }
 
+  editBooking(mybooking: BookingDetails) {
+    this.bookingsService.toggleEditBooking({edit: true, view: false});
+    this.bookingsService.selectBooking(mybooking);
+    this.router.navigate(['edit'], { relativeTo: this.route });
+  }
+
+  deleteBooking(mybooking: BookingDetails) {}
+
 }
