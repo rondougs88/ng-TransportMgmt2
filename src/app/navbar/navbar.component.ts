@@ -1,6 +1,5 @@
 import { UserService } from './../services/user-service.service';
 import { Router } from '@angular/router';
-import { AvailableTripsService } from './../services/available-trips.service';
 import { BookingDetails } from './../shared/model/booking-details';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';

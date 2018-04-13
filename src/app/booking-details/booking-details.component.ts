@@ -1,6 +1,6 @@
 import { AvailTrips } from './../shared/model/availTrips';
 import { Observable } from 'rxjs/Observable';
-import { AvailableTripsService } from './../services/available-trips.service';
+import { BookingsService } from './../services/bookings.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,7 +12,7 @@ export class BookingDetailsComponent implements OnInit {
 
   selectedTrips$: Observable<AvailTrips>;
 
-  constructor(private availableTripsService: AvailableTripsService) { }
+  constructor(private availableTripsService: BookingsService) { }
 
   ngOnInit() {
     this.selectedTrips$ = this.availableTripsService.selectedTrip$;

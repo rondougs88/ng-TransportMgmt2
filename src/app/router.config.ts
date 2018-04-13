@@ -1,3 +1,4 @@
+import { EditBookingComponent } from './edit-booking/edit-booking.component';
 import { SuccessComponent } from './register-page/success/success.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
@@ -40,5 +41,9 @@ export const routerConfig: Routes = [
     {
         path: 'register/registrationsuccess',
         component: SuccessComponent
+    },
+    {
+        path: 'mybookingslist/edit',
+        component: EditBookingComponent
     },
 ];

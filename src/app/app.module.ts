@@ -22,9 +22,10 @@ import { MyBookingsListComponent } from './my-bookings-list/my-bookings-list.com
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { UserService } from './services/user-service.service';
-import { AvailableTripsService } from './services/available-trips.service';
+import { BookingsService } from './services/bookings.service';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { SuccessComponent } from './register-page/success/success.component';
+import { EditBookingComponent } from './edit-booking/edit-booking.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { SuccessComponent } from './register-page/success/success.component';
     LoginPageComponent,
     RegisterPageComponent,
     SuccessComponent,
+    EditBookingComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,7 @@ import { SuccessComponent } from './register-page/success/success.component';
   ],
   providers: [
     PlacesService,
-    AvailableTripsService,
+    BookingsService,
     UserService],
   bootstrap: [AppComponent]
 })

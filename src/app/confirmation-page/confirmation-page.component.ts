@@ -1,6 +1,6 @@
 import { BookingDetails } from './../shared/model/booking-details';
 import { Observable } from 'rxjs/Observable';
-import { AvailableTripsService } from './../services/available-trips.service';
+import { BookingsService } from './../services/bookings.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -13,7 +13,7 @@ export class ConfirmationPageComponent implements OnInit {
   bookingID: number;
   showspinner = true;
 
-  constructor(private availableTripsService: AvailableTripsService) { }
+  constructor(private availableTripsService: BookingsService) { }
 
   ngOnInit() {
     this.availableTripsService.saveBooking$

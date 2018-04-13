@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { AvailTrips } from './../../shared/model/availTrips';
 import { Observable } from 'rxjs/Observable';
-import { AvailableTripsService } from './../../services/available-trips.service';
+import { BookingsService } from './../../services/bookings.service';
 import { BookingDetails } from './../../shared/model/booking-details';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -15,16 +15,56 @@ export class PassengerDetailsComponent implements OnInit {
 
   passengerDetailsForm: FormGroup;
   bookingdetails: BookingDetails;
+  selectedBooking: BookingDetails = new BookingDetails('', '', '', '', null, '', '', '', null, '', '');
   selectedTrip: AvailTrips;
+  isViewOnly: Boolean = false;
+  // isEdit: Boolean = false;
 
   constructor(
     private fb: FormBuilder,
-    private availableTripsService: AvailableTripsService,
+    private bookingsService: BookingsService,
     private router: Router) {
     this.createForm();
   }
 
   ngOnInit() {
+    this.bookingsService.selectedBooking$
+      .subscribe(
+      selectedBooking => {
+        if (selectedBooking) {
+          this.bookingsService.isEditBooking$
+            .subscribe(
+            action => {
+              // this.isEdit = isEdit;
+              if (action.edit || action.view) {
+                // this.bookingsService.toggleEditBooking({edit: false, view: false});
+                this.isViewOnly = action.view;
+                this.selectedBooking = selectedBooking;
+                this.passengerDetailsForm.setValue({
+                  name: selectedBooking.name,
+                  email: selectedBooking.email,
+                  mobile: selectedBooking.mobileNumber,
+                });
+              }
+            }
+            );
+        }
+      }
+      );
+  }
+
+  revert() { this.rebuildForm(); }
+
+  rebuildForm() {
+    this.passengerDetailsForm.reset({
+      name: this.selectedBooking.name,
+      email: this.selectedBooking.email,
+      mobile: this.selectedBooking.mobileNumber,
+    });
+  }
+
+  edit() {
+    this.isViewOnly = !this.isViewOnly;
   }
 
   createForm() {
@@ -37,20 +77,16 @@ export class PassengerDetailsComponent implements OnInit {
 
   onSubmit() {
     this.prepareBookingDetails();
-    this.availableTripsService.saveBooking(this.bookingdetails);
-    // this.availableTripsService.saveBooking$
-    //   .subscribe(
-    //   (res) => {
-    //     if (res) {
-    //       console.log('Saved to database:', res);
-    //     }
-    //   }
-    //   );
-    this.router.navigate(['confirmation']);
+    if (this.selectedBooking.bookingId) {                   // If there is a booking id, then this is an update task.
+
+    } else {                                                // Else, this is a create new task.
+      this.bookingsService.saveBooking(this.bookingdetails);
+      this.router.navigate(['confirmation']);
+    }
   }
 
   prepareBookingDetails() {
-    this.availableTripsService.selectedTrip$
+    this.bookingsService.selectedTrip$
       .subscribe(
       selectedTrip => this.selectedTrip = selectedTrip
       );

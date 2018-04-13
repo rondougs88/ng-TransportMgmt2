@@ -2,31 +2,33 @@
 <hr>
 
 <div class="container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Source</th>
-        <th>Destination</th>
-        <th>Departure Time</th>
-        <th>Arrival Time</th>
-        <th>Bus ID</th>
-        <th>Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngIf = "selectedTrips$ | async as selectedTrip">
-        <td>{{selectedTrip.source}}</td>
-        <td>{{selectedTrip.destination}}</td>
-        <td>{{selectedTrip.from_time}}</td>
-        <td>{{selectedTrip.to_time}}</td>
-        <td>{{selectedTrip.bus_id}}</td>
-        <td>{{selectedTrip.price}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>Departure Time</th>
+          <th>Arrival Time</th>
+          <th>Bus ID</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="selectedTrips$ | async as selectedTrip">
+          <td>{{selectedTrip.source}}</td>
+          <td>{{selectedTrip.destination}}</td>
+          <td>{{selectedTrip.from_time}}</td>
+          <td>{{selectedTrip.to_time}}</td>
+          <td>{{selectedTrip.bus_id}}</td>
+          <td>{{selectedTrip.price}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<hr>
+  <hr>
 
-<app-passenger-details></app-passenger-details>
+  <app-passenger-details></app-passenger-details>
 
 </div>

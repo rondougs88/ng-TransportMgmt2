@@ -1,7 +1,6 @@
 import { User } from './../shared/model/user';
 import { UserService } from './../services/user-service.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AvailableTripsService } from './../services/available-trips.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 

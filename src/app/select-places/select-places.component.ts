@@ -1,4 +1,4 @@
-import { AvailableTripsService } from './../services/available-trips.service';
+import { BookingsService } from './../services/bookings.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { FormArray, FormBuilder, FormGroup, Validators, FormControl, ValidatorFn } from '@angular/forms';
@@ -28,7 +28,7 @@ export class SelectPlacesComponent implements OnInit {
     private fb: FormBuilder,
     private placesService: PlacesService,
     private route: ActivatedRoute,
-    private availableTripsService: AvailableTripsService,
+    private availableTripsService: BookingsService,
     private router: Router) {
     this.createForm();
 
