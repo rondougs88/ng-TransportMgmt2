@@ -37,6 +37,9 @@ export class MyBookingsListComponent implements OnInit {
     this.router.navigate(['edit'], { relativeTo: this.route });
   }
 
-  deleteBooking(mybooking: BookingDetails) {}
+  deleteBooking(mybooking: BookingDetails) {
+    this.bookingsService.removeBooking(mybooking);
+    this.router.navigate(['confirmation']);
+  }
 
 }

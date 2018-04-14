@@ -35,6 +35,7 @@ export class EditBookingComponent implements OnInit {
           bookingdetails.price,
           bookingdetails.source,
           bookingdetails.to_time,
+          bookingdetails._id,
         );
       }
       );

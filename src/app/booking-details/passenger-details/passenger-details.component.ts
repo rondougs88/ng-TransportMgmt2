@@ -78,7 +78,8 @@ export class PassengerDetailsComponent implements OnInit {
   onSubmit() {
     this.prepareBookingDetails();
     if (this.selectedBooking.bookingId) {                   // If there is a booking id, then this is an update task.
-
+      this.bookingsService.updateBooking(this.bookingdetails);
+      this.router.navigate(['confirmation']);
     } else {                                                // Else, this is a create new task.
       this.bookingsService.saveBooking(this.bookingdetails);
       this.router.navigate(['confirmation']);

@@ -12,11 +12,12 @@ export class BookingsService {
   private selectedTripsubject = new BehaviorSubject<AvailTrips>(new AvailTrips('', '', '', null, '', ''));
   private savedBookingSubject = new Subject<any>();
   private selectBookingSubject = new BehaviorSubject<BookingDetails>(null);
-  private isEditBookingSubject = new BehaviorSubject<{edit: Boolean, view: Boolean}>(null);
+  private isEditBookingSubject = new BehaviorSubject<{ edit: Boolean, view: Boolean }>(null);
   private myBookingsSubject = new BehaviorSubject<BookingDetails[]>([]);
 
   private bookingDetails: BookingDetails;
   private selectedTrip: AvailTrips;
+  private selectedBooking: BookingDetails;
   // private isEditBooking: {edit: Boolean, view: Boolean} = {edit: false, view: false};
 
   availableTrips$: Observable<AvailTrips[]>;
@@ -24,7 +25,7 @@ export class BookingsService {
   selectedBooking$: Observable<BookingDetails> = this.selectBookingSubject.asObservable();
   saveBooking$: Observable<any> = this.savedBookingSubject.asObservable();
   myBookings$: Observable<BookingDetails[]> = this.myBookingsSubject.asObservable();
-  isEditBooking$: Observable<{edit: Boolean, view: Boolean}> = this.isEditBookingSubject.asObservable();
+  isEditBooking$: Observable<{ edit: Boolean, view: Boolean }> = this.isEditBookingSubject.asObservable();
 
   constructor(private http: Http) { }
 
@@ -43,36 +44,59 @@ export class BookingsService {
     const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
     const token = localStorage.getItem('token')
-            ? '?token=' + localStorage.getItem('token')
-            : '';
+      ? '?token=' + localStorage.getItem('token')
+      : '';
 
     // this.saveBooking$ =
-     this.http.post('http://localhost:8010/api/savebooking' + token, bookingdetails, options)
-         .subscribe(
-          res => this.savedBookingSubject.next(res)
-         );
+    this.http.post('http://localhost:8010/api/savebooking' + token, bookingdetails, options)
+      .subscribe(
+      res => this.savedBookingSubject.next(res)
+      );
     // return this.saveBooking$;
+  }
+
+  updateBooking(bookingdetails: BookingDetails) {
+    const body = JSON.stringify(bookingdetails);
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const token = localStorage.getItem('token')
+      ? '?token=' + localStorage.getItem('token')
+      : '';
+    this.http.patch('http://localhost:8010/api/updatebooking/' + this.selectedBooking._id + token, body, { headers: headers })
+      .subscribe(
+      res => this.savedBookingSubject.next(res)
+      );
+  }
+
+  removeBooking(bookingdetails: BookingDetails) {
+    const token = localStorage.getItem('token')
+      ? '?token=' + localStorage.getItem('token')
+      : '';
+    this.http.delete('http://localhost:8010/api/updatebooking/' + bookingdetails._id + token)
+      .subscribe(
+      res => this.savedBookingSubject.next(res)
+      );
   }
 
   getMyBookings(): Observable<BookingDetails[]> {
     const token = localStorage.getItem('token')
-    ? '?token=' + localStorage.getItem('token')
-    : '';
+      ? '?token=' + localStorage.getItem('token')
+      : '';
     this.myBookings$ = this.http.get('http://localhost:8010/api/getmybookings' + token)
-                          .map(res => {
-                            const data = res.json();
-                            return data;
-                            // return data.array.forEach(element => {
-                            //   return new BookingDetails()
-                            });
+      .map(res => {
+        const data = res.json();
+        return data;
+        // return data.array.forEach(element => {
+        //   return new BookingDetails()
+      });
     return this.myBookings$;
   }
 
   selectBooking(booking: BookingDetails) {
+    this.selectedBooking = booking;
     this.selectBookingSubject.next(booking);
   }
 
-  toggleEditBooking(action: {edit: Boolean, view: Boolean}) {
+  toggleEditBooking(action: { edit: Boolean, view: Boolean }) {
     // this.isEditBooking = !this.isEditBooking;
     this.isEditBookingSubject.next(action);
   }

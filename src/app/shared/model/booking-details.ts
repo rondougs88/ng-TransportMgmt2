@@ -13,6 +13,7 @@ export class BookingDetails {
     price: number;
     source: string;
     to_time: string;
+    _id?: string;
 
     constructor(
         bookingId: string,
@@ -26,6 +27,7 @@ export class BookingDetails {
         price: number,
         source: string,
         to_time: string,
+        _id?: string
     ) {
         this.bookingId = bookingId;
         this.bookingDate = bookingDate;
@@ -38,5 +40,6 @@ export class BookingDetails {
         this.price = price;
         this.source = source;
         this.to_time = to_time;
+        this._id = _id;
     }
 }
