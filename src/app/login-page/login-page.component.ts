@@ -3,11 +3,23 @@ import { UserService } from './../services/user-service.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { trigger, transition, animate, style, group, query } from '@angular/animations';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  styleUrls: ['./login-page.component.css'],
+  animations: [
+    trigger('slideInOut', [
+      transition(':enter', [
+        style({transform: 'translateX(+100%)'}),
+        animate('400ms ease-in', style({transform: 'translateX(0%)'}))
+      ]),
+      transition(':leave', [
+        animate('200ms ease-in', style({transform: 'translateY(-100%)'}))
+      ])
+    ])
+  ]
 })
 export class LoginPageComponent implements OnInit {
 
@@ -45,7 +57,7 @@ export class LoginPageComponent implements OnInit {
         localStorage.setItem('userId', data.userId);
         this.router.navigateByUrl('/');
       },
-      error =>  {
+      error => {
         console.error(error.error.message);
         this.titleAlert = error.error.message;
       }

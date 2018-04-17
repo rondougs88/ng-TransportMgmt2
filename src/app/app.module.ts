@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CollapseModule, BsDropdownModule } from 'ngx-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
@@ -52,7 +53,8 @@ import { EditBookingComponent } from './edit-booking/edit-booking.component';
     AngularFireDatabaseModule,
     FormsModule,
     CollapseModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [
     PlacesService,

@@ -2,6 +2,7 @@ import { BookingsService } from './../services/bookings.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { FormArray, FormBuilder, FormGroup, Validators, FormControl, ValidatorFn } from '@angular/forms';
+import { trigger, transition, animate, style, query } from '@angular/animations';
 
 import { PlacesService } from '../services/places.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -10,7 +11,18 @@ import { GroupByCity } from '../shared/model/groupByCity';
 @Component({
   selector: 'app-select-places',
   templateUrl: './select-places.component.html',
-  styleUrls: ['./select-places.component.css']
+  styleUrls: ['./select-places.component.css'],
+  animations: [
+    trigger('slideInOut', [
+      transition(':enter', [
+        style({transform: 'translateX(+100%)'}),
+        animate('400ms ease-in', style({transform: 'translateX(0%)'}))
+      ]),
+      transition(':leave', [
+        animate('200ms ease-in', style({transform: 'translateY(-100%)'}))
+      ])
+    ])
+  ]
 })
 export class SelectPlacesComponent implements OnInit {
 

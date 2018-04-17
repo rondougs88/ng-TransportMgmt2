@@ -3,11 +3,23 @@ import { UserService } from './../services/user-service.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { trigger, transition, animate, style, group, query } from '@angular/animations';
 
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
-  styleUrls: ['./register-page.component.css']
+  styleUrls: ['./register-page.component.css'],
+  animations: [
+    trigger('slideInOut', [
+      transition(':enter', [
+        style({transform: 'translateX(+100%)'}),
+        animate('400ms ease-in', style({transform: 'translateX(0%)'}))
+      ]),
+      transition(':leave', [
+        animate('200ms ease-in', style({transform: 'translateY(-100%)'}))
+      ])
+    ])
+  ]
 })
 export class RegisterPageComponent implements OnInit {
 
