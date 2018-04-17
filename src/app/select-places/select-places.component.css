@@ -17,6 +17,15 @@ select.ng-invalid.ng-touched {
     padding: 6px 30px;
 }
 
+.well {
+    padding: 5px 34px 64px;
+    margin-bottom: 20px;
+    margin-top: 60px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+}
+
 @media screen and (max-width: 600px) {
     .login-box{ 
         width: 80%;

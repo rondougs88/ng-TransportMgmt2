@@ -12,6 +12,12 @@ body {
   padding-left: 15px;
 }
 
+h1.well, div.well {
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+}
+
 /* Custom page header */
 .header {
   border-bottom: 1px solid #e5e5e5;

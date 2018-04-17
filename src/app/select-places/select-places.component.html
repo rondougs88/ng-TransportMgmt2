@@ -1,45 +1,47 @@
-<div class="login-box">
-  <h2>Select your trip:</h2>
+<div class="container">
+  <div class="col-xs-12 col-md-8 col-md-offset-2 well">
+    <h2>Select your trip:</h2>
 
-  <app-loading-spinner *ngIf="showspinner else form"></app-loading-spinner>
+    <app-loading-spinner *ngIf="showspinner else form"></app-loading-spinner>
 
-  <ng-template #form>
-    <form [formGroup]="selectTripForm" (ngSubmit)="onSubmit()">
+    <ng-template #form>
+      <form [formGroup]="selectTripForm" (ngSubmit)="onSubmit()">
 
-      <div class="form-group">
-        <label class="center-block" for="source">Source:</label>
-        <select #source class="form-control" formControlName="source">
-          <option>-- None --</option>
-          <optgroup *ngFor="let place of places" [label]="place.city">
-            <option *ngFor="let stop of place.stops" [value]="stop.value">
-              {{ stop.viewValue }}
-            </option>
-          </optgroup>
-        </select>
-        <div class="alert" *ngIf="!selectTripForm.controls['source'].valid 
+        <div class="form-group">
+          <label class="center-block" for="source">Source:</label>
+          <select #source class="form-control" formControlName="source">
+            <option>-- None --</option>
+            <optgroup *ngFor="let place of places" [label]="place.city">
+              <option *ngFor="let stop of place.stops" [value]="stop.value">
+                {{ stop.viewValue }}
+              </option>
+            </optgroup>
+          </select>
+          <div class="alert" *ngIf="!selectTripForm.controls['source'].valid 
         && selectTripForm.controls['source'].touched">{{ titleAlert }}</div>
-      </div>
-
-      <div class="form-group">
-        <label for="destination">Destination:</label>
-        <select class="form-control" formControlName="destination">
-          <option>-- None --</option>
-          <optgroup *ngFor="let place of places" [label]="place.city">
-            <option *ngFor="let stop of place.stops" [value]="stop.value">
-              {{ stop.viewValue }}
-            </option>
-          </optgroup>
-        </select>
-
-        <div class="alert" *ngIf="!selectTripForm.controls['destination'].valid 
-        && selectTripForm.controls['destination'].touched && !selectTripForm.controls['destination'].value">{{ titleAlert }}</div>
-        <div class="alert" *ngIf="selectTripForm.controls['destination'].errors && !selectTripForm.controls['destination'].pristine">
-          <div [hidden]="!selectTripForm.controls['destination'].errors.theSame">Destination must not be the same with source.</div>
         </div>
-      </div>
 
-      <button type="submit" class="btn btn-success pull-right" style="width: 100px; height: 40px" [disabled]="!selectTripForm.valid">Go</button>
+        <div class="form-group">
+          <label for="destination">Destination:</label>
+          <select class="form-control" formControlName="destination">
+            <option>-- None --</option>
+            <optgroup *ngFor="let place of places" [label]="place.city">
+              <option *ngFor="let stop of place.stops" [value]="stop.value">
+                {{ stop.viewValue }}
+              </option>
+            </optgroup>
+          </select>
 
-    </form>
-  </ng-template>
+          <div class="alert" *ngIf="!selectTripForm.controls['destination'].valid 
+        && selectTripForm.controls['destination'].touched && !selectTripForm.controls['destination'].value">{{ titleAlert }}</div>
+          <div class="alert" *ngIf="selectTripForm.controls['destination'].errors && !selectTripForm.controls['destination'].pristine">
+            <div [hidden]="!selectTripForm.controls['destination'].errors.theSame">Destination must not be the same with source.</div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-success pull-right" style="width: 100px; height: 40px" [disabled]="!selectTripForm.valid">Go</button>
+
+      </form>
+    </ng-template>
+  </div>
 </div>
