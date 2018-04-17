@@ -18,12 +18,27 @@ select.ng-invalid.ng-touched {
 }
 
 .well {
-    padding: 5px 34px 64px;
+    padding: 5px 34px 40px;
     margin-bottom: 20px;
     margin-top: 60px;
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
     border: none;
+    border-radius: 45px;
+}
+
+.avatar{
+    width: 113px;
+    height: 65px;
+    background-image: url(/assets/img/location-icon.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-width: 0px;
+    border: none;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
 }
 
 @media screen and (max-width: 600px) {
