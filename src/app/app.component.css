@@ -1,16 +1,16 @@
-.jumbotron {
-    padding-top: 0px;
-    padding-bottom:0px;
-    background-image: url(/assets/img/bus.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 0px -214px;
-    color: white;
-    margin-bottom: 26px;
-    width: 100%; /* make sure to define width to fill container */
-    height: 148px; /* define the height in pixels or make sure   */
-                   /* you have something in your div with height */
-                   /* so you can see your image */
-}
+#backgroundimage {
+  background-image: url("/assets/img/desktop2-bg.jpg");
+  width: 100vw;
+  height: 100vh; 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  } 
 
 
+  @media screen and (max-width: 600px) {
+    #backgroundimage {
+      background-image: url("/assets/img/phone-bg.jpg");
+      } 
+  }

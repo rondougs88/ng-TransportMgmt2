@@ -1,3 +1,25 @@
 select.ng-invalid.ng-touched {
     border: 1.5px solid red;
 }
+
+.login-box{
+    width: 500px;
+    height: 292px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    top: 32%;
+    left: 50%;
+    position: absolute;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 6px 30px;
+}
+
+@media screen and (max-width: 600px) {
+    .login-box{ 
+        width: 80%;
+        top: 28%;
+    }
+}

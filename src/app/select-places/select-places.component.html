@@ -1,4 +1,4 @@
-<div class="col-xs-7 col-xs-offset-2">
+<div class="login-box">
   <h2>Select your trip:</h2>
 
   <app-loading-spinner *ngIf="showspinner else form"></app-loading-spinner>
@@ -22,8 +22,7 @@
 
       <div class="form-group">
         <label for="destination">Destination:</label>
-        <select class="form-control" 
-        formControlName="destination">
+        <select class="form-control" formControlName="destination">
           <option>-- None --</option>
           <optgroup *ngFor="let place of places" [label]="place.city">
             <option *ngFor="let stop of place.stops" [value]="stop.value">
